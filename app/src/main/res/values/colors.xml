@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Main colors -->
+    <color name="colorPrimary">#b43d3d</color>
+    <color name="colorPrimaryDark">#891010</color>
+    <color name="colorPrimaryBright">#f10202</color>
+    <color name="colorAccent">#FFFFFF</color>
+
+    <!-- Background colors -->
+    <color name="colorBackgroundPrimary">#3bffffff</color>
+    <color name="colorBackgroundPrimaryDark">#3bffffff</color>
+    <color name="colorBackgroundEditText">#3bffffff</color>
+
+    <!-- App main component colors -->
+    <color name="colorTabs">#b43d3d</color>
+    <color name="colorButton">#ebfeff</color>
+    <color name="colorFloatingActionButton">#ebfeff</color>
+
+
+    <!-- Test colors -->
+    <color name="colorTest1">#2196F3</color>
+    <color name="colorTest2">#26C6DA</color>
+    <color name="colorTest3">#BBDEFB</color>
+</resources>
