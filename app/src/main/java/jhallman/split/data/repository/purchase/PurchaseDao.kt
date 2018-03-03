@@ -13,8 +13,14 @@ interface PurchaseDao {
     @Query("SELECT * FROM purchase")
     fun getAllPurchases(): LiveData<List<Purchase>>
 
-    @Query("SELECT * FROM purchase WHERE id = (:purchaseID)")
-    fun findPurchaseById(purchaseID: Long): LiveData<Purchase>
+    @Query("SELECT * FROM purchase WHERE receipt_id = (:receiptId)")
+    fun findPurchasesForReceipt(receiptId: Long): LiveData<List<Purchase>>
+
+    @Query("SELECT * FROM purchase WHERE contact_id = (:contactId)")
+    fun findPurchasesForContact(contactId: Long): LiveData<List<Purchase>>
+
+    @Query("SELECT * FROM purchase WHERE id = (:purchaseId)")
+    fun findPurchaseById(purchaseId: Long): LiveData<Purchase>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertPurchase(purchase: Purchase): Long

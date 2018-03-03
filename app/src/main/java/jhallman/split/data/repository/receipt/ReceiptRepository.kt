@@ -19,6 +19,10 @@ class ReceiptRepository @Inject constructor(private val receiptDao: ReceiptDao) 
         return receiptDao.findReceiptById(receiptID)
     }
 
+    fun findReceiptsForTab(tabId: Long): LiveData<List<Receipt>> {
+        return receiptDao.findReceiptsForTab(tabId)
+    }
+
     fun insertReceipt(receipt: Receipt): Long {
         return receiptDao.insertReceipt(receipt)
     }

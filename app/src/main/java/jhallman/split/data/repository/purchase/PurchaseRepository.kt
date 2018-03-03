@@ -19,6 +19,14 @@ class PurchaseRepository @Inject constructor(private val purchaseDao: PurchaseDa
         return purchaseDao.findPurchaseById(purchaseID)
     }
 
+    fun findPurchasesForReceipt(receiptId: Long): LiveData<List<Purchase>> {
+        return purchaseDao.findPurchasesForReceipt(receiptId)
+    }
+
+    fun findPurchasesForContact(contactId: Long): LiveData<List<Purchase>> {
+        return purchaseDao.findPurchasesForContact(contactId)
+    }
+
     fun insertPurchase(purchase: Purchase): Long {
         return purchaseDao.insertPurchase(purchase)
     }
