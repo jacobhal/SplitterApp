@@ -19,8 +19,8 @@ class TabRepository @Inject constructor(private val tabDao: TabDao) {
         return tabDao.findTabById(tabID)
     }
 
-    fun insertTab(tab: Tab) {
-        tabDao.insertTab(tab)
+    fun insertTab(tab: Tab): Long {
+        return tabDao.insertTab(tab)
     }
 
     fun deleteTab(tab: Tab) {

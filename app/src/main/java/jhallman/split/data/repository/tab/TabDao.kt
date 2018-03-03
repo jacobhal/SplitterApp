@@ -18,7 +18,7 @@ interface TabDao {
     fun findTabById(tabID: Long): LiveData<Tab>
 
     @Insert(onConflict = REPLACE)
-    fun insertTab(tab: Tab)
+    fun insertTab(tab: Tab): Long
 
     @Update(onConflict = REPLACE)
     fun updateTab(tab: Tab)

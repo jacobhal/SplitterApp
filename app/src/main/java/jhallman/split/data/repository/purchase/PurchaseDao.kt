@@ -17,7 +17,7 @@ interface PurchaseDao {
     fun findPurchaseById(purchaseID: Long): LiveData<Purchase>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insertPurchase(purchase: Purchase)
+    fun insertPurchase(purchase: Purchase): Long
 
     @Update(onConflict = OnConflictStrategy.REPLACE)
     fun updatePurchase(purchase: Purchase)

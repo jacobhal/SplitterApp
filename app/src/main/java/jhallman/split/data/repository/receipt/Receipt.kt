@@ -8,12 +8,15 @@ import jhallman.split.data.repository.tab.Tab
  */
 
 @Entity(tableName = "receipt",
-        indices = [(Index(value = arrayOf("tab_id"), name = "idx"))],
-        foreignKeys = [(ForeignKey(entity = Tab::class,
-                parentColumns = arrayOf("id"),
-                childColumns = arrayOf("tab_id"),
-                onDelete = ForeignKey.CASCADE))])
+        indices = [(Index(value = arrayOf("tab_id")))],
+        foreignKeys = [(
+                ForeignKey(
+                        entity = Tab::class,
+                        parentColumns = arrayOf("id"),
+                        childColumns = arrayOf("tab_id"),
+                        onDelete = ForeignKey.CASCADE
+                ))])
 data class Receipt(
         @PrimaryKey(autoGenerate = true) var id: Long = 0,
-        @ColumnInfo(name = "tab_id") val tabID: Int,
+        @ColumnInfo(name = "tab_id") val tabId: Long,
         @ColumnInfo(name = "receipt_title") val title: String)

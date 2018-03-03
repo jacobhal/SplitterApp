@@ -17,7 +17,7 @@ interface ReceiptDao {
     fun findReceiptById(receiptID: Long): LiveData<Receipt>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insertReceipt(receipt: Receipt)
+    fun insertReceipt(receipt: Receipt): Long
 
     @Update(onConflict = OnConflictStrategy.REPLACE)
     fun updateReceipt(receipt: Receipt)

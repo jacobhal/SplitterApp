@@ -20,8 +20,7 @@
     <string name="dialog_tab_hint">Enter tab name</string>
 
     <!-- RunningTabsFragmAwaitingPaymentTabFragmentment -->
-    <string name="running_tabs_heading">Running tabs</string>
-    <string name="awaiting_payment_tabs_heading">Awaiting payment tabs</string>
+    <string name="all_tabs_heading">All tabs</string>
 
     <!-- AddPersonFragment -->
     <string name="add_person_heading">Add person</string>

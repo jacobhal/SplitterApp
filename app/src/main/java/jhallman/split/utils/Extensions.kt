@@ -1,5 +1,7 @@
 package jhallman.split.utils
 
+import android.arch.lifecycle.LiveData
+import android.arch.lifecycle.Observer
 import android.content.Context
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager
@@ -9,6 +11,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import java.util.concurrent.CountDownLatch
+import java.util.concurrent.TimeUnit
 
 /**
  * Created by Jacob on 2018-02-13.
@@ -41,4 +45,17 @@ fun AppCompatActivity.replaceFragment(fragment: Fragment, frameId: Int) {
 // Shorter expression to create a toast
 fun Context.toast(message: CharSequence, duration: Int = Toast.LENGTH_LONG) {
     Toast.makeText(this, message, duration).show()
+}
+
+// Retrieving LiveData instantly for testing
+fun <T> LiveData<T>.blockingObserve(): T? {
+    var value: T? = null
+    val latch = CountDownLatch(1)
+    val innerObserver = Observer<T> {
+        value = it
+        latch.countDown()
+    }
+    observeForever(innerObserver)
+    latch.await(2, TimeUnit.SECONDS)
+    return value
 }

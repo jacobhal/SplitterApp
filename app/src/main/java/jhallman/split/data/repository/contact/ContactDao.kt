@@ -17,7 +17,7 @@ interface ContactDao {
     fun findContactById(contactID: Long): LiveData<Contact>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insertContact(contact: Contact)
+    fun insertContact(contact: Contact): Long
 
     @Update(onConflict = OnConflictStrategy.REPLACE)
     fun updateContact(contact: Contact)

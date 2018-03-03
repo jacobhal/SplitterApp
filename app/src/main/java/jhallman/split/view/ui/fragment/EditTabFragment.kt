@@ -44,9 +44,6 @@ class EditTabFragment : Fragment() {
         fab_edit_receipt.setOnClickListener {
             onEditReceiptButtonPressed(mTabID!!)
         }
-        fab_edit_tab_contacts.setOnClickListener {
-            onEditTabContactsButtonPressed(mTabID!!)
-        }
 
         super.onActivityCreated(savedInstanceState)
     }

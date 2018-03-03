@@ -17,7 +17,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="@dimen/activity_vertical_margin"
-        android:text="@string/awaiting_payment_tabs_heading"
+        android:text="@string/all_tabs_heading"
         android:textAlignment="center"
         android:textColor="@android:color/black"
         android:textSize="@dimen/heading_text" />

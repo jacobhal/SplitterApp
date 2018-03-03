@@ -1,7 +1,5 @@
 package jhallman.split.view.ui
 
-import android.arch.lifecycle.ViewModelProvider
-import android.arch.lifecycle.ViewModelProviders
 import android.net.Uri
 import android.os.Bundle
 import android.support.design.widget.NavigationView
@@ -12,16 +10,12 @@ import android.support.v7.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
 import jhallman.split.R
-import jhallman.split.application.SplitterApplication
 import jhallman.split.utils.*
 import jhallman.split.view.ui.fragment.AddReceiptFragment
 import jhallman.split.view.ui.fragment.EditReceiptFragment
 import jhallman.split.view.ui.fragment.*
-import jhallman.split.viewmodel.ReceiptViewModel
-import jhallman.split.viewmodel.TabViewModel
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.app_bar_main.*
-import javax.inject.Inject
 
 /**
  * This Activity handles navigation between all fragments in the app
@@ -37,8 +31,7 @@ class MainActivity : AppCompatActivity(),
         EditTabFragment.OnFragmentInteractionListener,
         FinishTabFragment.OnFragmentInteractionListener,
         HomeFragment.OnFragmentInteractionListener,
-        AwaitingPaymentTabsFragment.OnFragmentInteractionListener,
-        RunningTabsFragment.OnFragmentInteractionListener {
+        AllTabsFragment.OnFragmentInteractionListener {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -54,10 +47,6 @@ class MainActivity : AppCompatActivity(),
 
         // Initiate navigation to this context
         nav_view.setNavigationItemSelectedListener(this)
-
-        // TODO: Create proper viewModels and instantiate each of them in respective fragment or in this activity
-        // mviewModel = ViewModelProviders.of(this, mViewModelFactory).get(TabViewModel::class.java)
-
 
         // Display home fragment
         displayFragment(R.id.nav_home)
@@ -100,7 +89,7 @@ class MainActivity : AppCompatActivity(),
                 fragment = HomeFragment()
             }
             R.id.nav_all_tabs -> {
-                fragment = RunningTabsFragment()
+                fragment = AllTabsFragment()
             }
             R.id.nav_settings -> {
                 fragment = SettingsFragment()
@@ -194,12 +183,7 @@ class MainActivity : AppCompatActivity(),
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
-    // AwaitingPaymentTabsFragment
-    override fun onAwaitingPaymentTabSelected(tabID: Int) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
-
-    // RunningTabsFragment
+    // AllTabsFragment
     override fun onRunningTabSelected(tabID: Int) {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }

@@ -22,7 +22,7 @@
         android:id="@+id/tv_subheading"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Add purchases to this tab with {PLUS} or edit purchases with {PEN}"
+        android:text="List all receipts of this tab or add new receipts"
         android:textAlignment="center"
         android:textSize="@dimen/small_text"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -60,7 +60,7 @@
             android:layout_marginLeft="@dimen/activity_horizontal_margin_big"
             android:layout_marginStart="@dimen/activity_horizontal_margin_big"
             app:backgroundTint="@color/colorPrimaryDark"
-            app:srcCompat="@drawable/ic_mode_edit_white_24dp" />
+            app:srcCompat="@drawable/ic_list_white_24dp" />
 
         <android.support.design.widget.FloatingActionButton
             android:id="@+id/fab_new_receipt"

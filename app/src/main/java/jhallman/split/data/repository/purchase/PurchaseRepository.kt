@@ -19,8 +19,8 @@ class PurchaseRepository @Inject constructor(private val purchaseDao: PurchaseDa
         return purchaseDao.findPurchaseById(purchaseID)
     }
 
-    fun insertPurchase(purchase: Purchase) {
-        purchaseDao.insertPurchase(purchase)
+    fun insertPurchase(purchase: Purchase): Long {
+        return purchaseDao.insertPurchase(purchase)
     }
 
     fun deletePurchase(purchase: Purchase) {

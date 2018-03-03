@@ -54,31 +54,4 @@
                 android:layout_height="match_parent" />
         </LinearLayout>
     </ScrollView>
-
-    <android.support.constraint.Guideline
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/guideline"
-        app:layout_constraintGuide_percent="@dimen/guideline_buttons"
-        android:orientation="horizontal"/>
-
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/fab_edit_tab_contacts"
-        android:layout_width="@dimen/floating_button_width_big"
-        android:layout_height="@dimen/floating_button_height_big"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
-        android:layout_centerVertical="true"
-        android:gravity="bottom"
-        android:layout_marginBottom="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        app:backgroundTint="@color/colorPrimaryDark"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/guideline"
-        app:srcCompat="@drawable/ic_mode_edit_white_24dp"
-        app:layout_constraintVertical_bias="@dimen/vertical_bias"/>
 </android.support.constraint.ConstraintLayout>

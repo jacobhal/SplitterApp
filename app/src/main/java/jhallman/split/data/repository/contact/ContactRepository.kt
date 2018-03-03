@@ -1,6 +1,7 @@
 package jhallman.split.data.repository.contact
 
 import android.arch.lifecycle.LiveData
+import android.arch.persistence.room.Dao
 import javax.inject.Inject
 import javax.inject.Singleton
 
@@ -19,8 +20,8 @@ class ContactRepository @Inject constructor(private val contactDao: ContactDao) 
         return contactDao.findContactById(contactID)
     }
 
-    fun insertContact(contact: Contact) {
-        contactDao.insertContact(contact)
+    fun insertContact(contact: Contact): Long {
+        return contactDao.insertContact(contact)
     }
 
     fun deleteContact(contact: Contact) {

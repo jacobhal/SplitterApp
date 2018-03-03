@@ -19,8 +19,8 @@ class ReceiptRepository @Inject constructor(private val receiptDao: ReceiptDao) 
         return receiptDao.findReceiptById(receiptID)
     }
 
-    fun insertReceipt(receipt: Receipt) {
-        receiptDao.insertReceipt(receipt)
+    fun insertReceipt(receipt: Receipt): Long {
+        return receiptDao.insertReceipt(receipt)
     }
 
     fun deleteReceipt(receipt: Receipt) {

@@ -22,17 +22,15 @@ import javax.inject.Singleton
     ViewModelModule::class]) // GoogleAPIModule::class
 interface AppComponent {
     fun inject(application: SplitterApplication)
-
     fun inject(target: MainActivity)
     fun inject(target: AddPersonFragment)
     fun inject(target: AddReceiptFragment)
-    fun inject(target: AwaitingPaymentTabsFragment)
     fun inject(target: CreatedTabFragment)
     fun inject(target: EditReceiptFragment)
     fun inject(target: EditTabContactsFragment)
     fun inject(target: EditTabFragment)
     fun inject(target: FinishTabFragment)
     fun inject(target: HomeFragment)
-    fun inject(target: RunningTabsFragment)
+    fun inject(target: AllTabsFragment)
     fun inject(target: SettingsFragment)
 }
