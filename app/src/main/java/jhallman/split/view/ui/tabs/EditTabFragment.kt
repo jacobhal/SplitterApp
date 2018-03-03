@@ -1,7 +1,6 @@
-package jhallman.split.view.ui.fragment
+package jhallman.split.view.ui.tabs
 
 import android.content.Context
-import android.net.Uri
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.view.LayoutInflater
@@ -9,20 +8,20 @@ import android.view.View
 import android.view.ViewGroup
 
 import jhallman.split.R
+import kotlinx.android.synthetic.main.list_layout.*
 
 /**
  * A simple [Fragment] subclass.
  * Activities that contain this fragment must implement the
- * [EditTabContactsFragment.OnFragmentInteractionListener] interface
+ * [EditTabFragment.OnFragmentInteractionListener] interface
  * to handle interaction events.
- * Use the [EditTabContactsFragment.newInstance] factory method to
+ * Use the [EditTabFragment.newInstance] factory method to
  * create an instance of this fragment.
  */
-class EditTabContactsFragment : Fragment() {
+class EditTabFragment : Fragment() {
 
     // TODO: Rename and change types of parameters
     private var mTabID: Int? = null
-
     private var mListener: OnFragmentInteractionListener? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -35,13 +34,28 @@ class EditTabContactsFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
-        return inflater!!.inflate(R.layout.fragment_edit_tab_contacts, container, false)
+        return inflater!!.inflate(R.layout.fragment_edit_tab, container, false)
     }
 
-    // TODO: Rename method, update argument and hook method into UI event
-    fun onButtonPressed(uri: Uri) {
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        // TODO: Use adapter and dynamically fill the list of receipts with parameters and buttons using list_layout.xml
+        // onEditReceiptButtonPressed(mTabID!!)
+        fab_edit_receipt.setOnClickListener {
+            onEditReceiptButtonPressed(mTabID!!)
+        }
+
+        super.onActivityCreated(savedInstanceState)
+    }
+
+    fun onEditReceiptButtonPressed(receiptID: Int) {
         if (mListener != null) {
-            mListener!!.onFragmentInteraction(uri)
+            mListener!!.onEditReceipt(receiptID)
+        }
+    }
+
+    fun onEditTabContactsButtonPressed(tabID: Int) {
+        if (mListener != null) {
+            mListener!!.onEditTabContacts(tabID)
         }
     }
 
@@ -69,8 +83,8 @@ class EditTabContactsFragment : Fragment() {
      * See the Android Training lesson [Communicating with Other Fragments](http://developer.android.com/training/basics/fragments/communicating.html) for more information.
      */
     interface OnFragmentInteractionListener {
-        // TODO: Update argument type and name
-        fun onFragmentInteraction(uri: Uri)
+        fun onEditReceipt(receiptID: Int)
+        fun onEditTabContacts(tabID: Int)
     }
 
     companion object {
@@ -83,10 +97,10 @@ class EditTabContactsFragment : Fragment() {
          * this fragment using the provided parameters.
          *
          * @param tabID the id of the tab
-         * @return A new instance of fragment EditTabContactsFragment.
+         * @return A new instance of fragment EditTabFragment.
          */
-        fun newInstance(tabID: Int): EditTabContactsFragment {
-            val fragment = EditTabContactsFragment()
+        fun newInstance(tabID: Int): EditTabFragment {
+            val fragment = EditTabFragment()
             val args = Bundle()
             args.putInt(ARG_TAB_ID, tabID)
             fragment.arguments = args

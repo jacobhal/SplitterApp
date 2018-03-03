@@ -3,7 +3,13 @@ package jhallman.split.di
 import dagger.Component
 import jhallman.split.application.SplitterApplication
 import jhallman.split.view.ui.MainActivity
-import jhallman.split.view.ui.fragment.*
+import jhallman.split.view.ui.contacts.AddContactFragment
+import jhallman.split.view.ui.contacts.EditTabContactsFragment
+import jhallman.split.view.ui.home.HomeFragment
+import jhallman.split.view.ui.receipts.AddReceiptFragment
+import jhallman.split.view.ui.receipts.EditReceiptFragment
+import jhallman.split.view.ui.settings.SettingsFragment
+import jhallman.split.view.ui.tabs.*
 import javax.inject.Singleton
 
 /**
@@ -23,9 +29,9 @@ import javax.inject.Singleton
 interface AppComponent {
     fun inject(application: SplitterApplication)
     fun inject(target: MainActivity)
-    fun inject(target: AddPersonFragment)
+    fun inject(target: AddContactFragment)
     fun inject(target: AddReceiptFragment)
-    fun inject(target: CreatedTabFragment)
+    fun inject(target: TabFragment)
     fun inject(target: EditReceiptFragment)
     fun inject(target: EditTabContactsFragment)
     fun inject(target: EditTabFragment)

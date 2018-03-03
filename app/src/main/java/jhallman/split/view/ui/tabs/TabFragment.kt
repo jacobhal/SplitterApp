@@ -1,48 +1,66 @@
-package jhallman.split.view.ui.fragment
+package jhallman.split.view.ui.tabs
 
 import android.content.Context
-import android.net.Uri
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 
+import kotlinx.android.synthetic.main.fragment_tab.*
 import jhallman.split.R
 
 /**
  * A simple [Fragment] subclass.
  * Activities that contain this fragment must implement the
- * [FinishTabFragment.OnFragmentInteractionListener] interface
+ * [TabFragment.OnFragmentInteractionListener] interface
  * to handle interaction events.
- * Use the [FinishTabFragment.newInstance] factory method to
+ * Use the [TabFragment.newInstance] factory method to
  * create an instance of this fragment.
  */
-class FinishTabFragment : Fragment() {
+class TabFragment : Fragment() {
 
-    // TODO: Rename and change types of parameters
-    private var mTitle: String? = null
-    private var mID: Int? = null
+    // TODO: Rename and change types of parameters for db usage
+    private var mTabID: Int? = null
 
     private var mListener: OnFragmentInteractionListener? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         if (arguments != null) {
-            mTitle = arguments.getString(ARG_TABNAME)
+            mTabID = arguments.getInt(ARG_TAB_ID)
         }
     }
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
-        return inflater!!.inflate(R.layout.fragment_finish_tab, container, false)
+        return inflater!!.inflate(R.layout.fragment_tab, container, false)
     }
 
-    // TODO: Rename method, update argument and hook method into UI event
-    fun onButtonPressed(uri: Uri) {
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        // TODO: Set Heading to tab name from db instead of the id
+        tv_heading.text = this.mTabID.toString()
+        fab_edit_tab.setOnClickListener {
+            onEditTabButtonPressed(mTabID!!)
+        }
+        fab_new_receipt.setOnClickListener {
+            onNewReceiptButtonPressed(mTabID!!)
+        }
+        super.onActivityCreated(savedInstanceState)
+    }
+
+    // Edit tab button pressed
+    fun onEditTabButtonPressed(tabID: Int) {
         if (mListener != null) {
-            mListener!!.onFragmentInteraction(uri)
+            mListener!!.onEditTab(tabID)
+        }
+    }
+
+    // New purchase button pressed
+    fun onNewReceiptButtonPressed(tabID: Int) {
+        if (mListener != null) {
+            mListener!!.onNewReceipt(tabID)
         }
     }
 
@@ -70,29 +88,28 @@ class FinishTabFragment : Fragment() {
      * See the Android Training lesson [Communicating with Other Fragments](http://developer.android.com/training/basics/fragments/communicating.html) for more information.
      */
     interface OnFragmentInteractionListener {
-        // TODO: Update argument type and name
-        fun onFragmentInteraction(uri: Uri)
+        fun onEditTab(tabID: Int)
+        fun onNewReceipt(tabID: Int)
     }
 
     companion object {
         // TODO: Rename parameter arguments, choose names that match
         // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-        private val ARG_TAB_ID = 0
-        private val ARG_TABNAME = "Tab name"
+        private val ARG_TAB_ID = "Tab ID"
 
         /**
          * Use this factory method to create a new instance of
          * this fragment using the provided parameters.
          *
-         * @param tabTitle the name of the tab
-         * @return A new instance of fragment FinishTabFragment.
+         * @param tabID the id of the tab
+         * @return A new instance of fragment TabFragment.
          */
-        fun newInstance(tabTitle: String): FinishTabFragment {
-            val fragment = FinishTabFragment()
+        fun newInstance(tabID: Int): TabFragment {
+            val fragment = TabFragment()
             val args = Bundle()
-            args.putString(ARG_TABNAME, tabTitle)
+            args.putInt(ARG_TAB_ID, tabID)
             fragment.arguments = args
             return fragment
         }
     }
-}// Required empty public constructor
+}

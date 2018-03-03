@@ -1,6 +1,7 @@
-package jhallman.split.view.ui.fragment
+package jhallman.split.view.ui.tabs
 
 import android.content.Context
+import android.net.Uri
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.view.LayoutInflater
@@ -8,58 +9,40 @@ import android.view.View
 import android.view.ViewGroup
 
 import jhallman.split.R
-import kotlinx.android.synthetic.main.fragment_edit_receipt.*
 
 /**
  * A simple [Fragment] subclass.
  * Activities that contain this fragment must implement the
- * [EditReceiptFragment.OnFragmentInteractionListener] interface
+ * [FinishTabFragment.OnFragmentInteractionListener] interface
  * to handle interaction events.
- * Use the [EditReceiptFragment.newInstance] factory method to
+ * Use the [FinishTabFragment.newInstance] factory method to
  * create an instance of this fragment.
  */
-class EditReceiptFragment : Fragment() {
+class FinishTabFragment : Fragment() {
 
     // TODO: Rename and change types of parameters
-    private var mReceiptID: Int? = null
+    private var mTitle: String? = null
+    private var mID: Int? = null
 
     private var mListener: OnFragmentInteractionListener? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         if (arguments != null) {
-            mReceiptID = arguments.getInt(ARG_RECEIPT_ID)
+            mTitle = arguments.getString(ARG_TABNAME)
         }
     }
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
-        return inflater!!.inflate(R.layout.fragment_edit_receipt, container, false)
+        return inflater!!.inflate(R.layout.fragment_finish_tab, container, false)
     }
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        fab_delete_receipt.setOnClickListener {
-            onDeleteReceiptButtonPressed()
-        }
-        fab_save_receipt.setOnClickListener {
-            onSaveReceiptButtonPressed()
-        }
-        // TODO: Use adapter and fill list of persons + link each delete button to each person
-        // TODO: Add the possibility
-
-        super.onActivityCreated(savedInstanceState)
-    }
-
-    fun onDeleteReceiptButtonPressed() {
+    // TODO: Rename method, update argument and hook method into UI event
+    fun onButtonPressed(uri: Uri) {
         if (mListener != null) {
-            mListener!!.onDeleteReceipt()
-        }
-    }
-
-    fun onSaveReceiptButtonPressed() {
-        if (mListener != null) {
-            mListener!!.onSaveReceipt()
+            mListener!!.onFragmentInteraction(uri)
         }
     }
 
@@ -88,28 +71,28 @@ class EditReceiptFragment : Fragment() {
      */
     interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
-        fun onDeleteReceipt()
-        fun onSaveReceipt()
+        fun onFragmentInteraction(uri: Uri)
     }
 
     companion object {
         // TODO: Rename parameter arguments, choose names that match
         // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-        private val ARG_RECEIPT_ID = "Receipt ID"
+        private val ARG_TAB_ID = 0
+        private val ARG_TABNAME = "Tab name"
 
         /**
          * Use this factory method to create a new instance of
          * this fragment using the provided parameters.
          *
-         * @param tabID the id of the tab
-         * @return A new instance of fragment EditReceiptFragment.
+         * @param tabTitle the name of the tab
+         * @return A new instance of fragment FinishTabFragment.
          */
-        fun newInstance(tabID: Int): EditReceiptFragment {
-            val fragment = EditReceiptFragment()
+        fun newInstance(tabTitle: String): FinishTabFragment {
+            val fragment = FinishTabFragment()
             val args = Bundle()
-            args.putInt(ARG_RECEIPT_ID, tabID)
+            args.putString(ARG_TABNAME, tabTitle)
             fragment.arguments = args
             return fragment
         }
     }
-}
+}// Required empty public constructor

@@ -1,4 +1,4 @@
-package jhallman.split.view.ui.fragment
+package jhallman.split.view.ui.home
 
 import android.app.AlertDialog
 import android.arch.lifecycle.ViewModelProvider
@@ -15,7 +15,6 @@ import kotlinx.android.synthetic.main.fragment_home.*
 
 import jhallman.split.R
 import jhallman.split.application.SplitterApplication
-import jhallman.split.view.ui.MainActivity
 import jhallman.split.viewmodel.TabViewModel
 import javax.inject.Inject
 

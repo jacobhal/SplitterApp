@@ -19,10 +19,10 @@
     <string name="dialog_tab_create">Create</string>
     <string name="dialog_tab_hint">Enter tab name</string>
 
-    <!-- RunningTabsFragmAwaitingPaymentTabFragmentment -->
+    <!-- AllTabsFragment -->
     <string name="all_tabs_heading">All tabs</string>
 
-    <!-- AddPersonFragment -->
+    <!-- AddContactFragment -->
     <string name="add_person_heading">Add person</string>
     <string name="form_name">Name</string>
     <string name="form_phone_number">Phone number</string>

@@ -1,6 +1,6 @@
-package jhallman.split.view.ui.fragment
+package jhallman.split.view.ui.settings
 
-import android.content.Context
+import android.net.Uri
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.view.LayoutInflater
@@ -8,58 +8,45 @@ import android.view.View
 import android.view.ViewGroup
 
 import jhallman.split.R
-import kotlinx.android.synthetic.main.fragment_edit_tab.*
-import kotlinx.android.synthetic.main.list_layout.*
 
 /**
  * A simple [Fragment] subclass.
  * Activities that contain this fragment must implement the
- * [EditTabFragment.OnFragmentInteractionListener] interface
+ * [SettingsFragment.OnFragmentInteractionListener] interface
  * to handle interaction events.
- * Use the [EditTabFragment.newInstance] factory method to
+ * Use the [SettingsFragment.newInstance] factory method to
  * create an instance of this fragment.
  */
-class EditTabFragment : Fragment() {
+class SettingsFragment : Fragment() {
 
     // TODO: Rename and change types of parameters
-    private var mTabID: Int? = null
+    private var mParam1: String? = null
+    private var mParam2: String? = null
+
     private var mListener: OnFragmentInteractionListener? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         if (arguments != null) {
-            mTabID = arguments.getInt(ARG_TAB_ID)
+            mParam1 = arguments.getString(ARG_PARAM1)
+            mParam2 = arguments.getString(ARG_PARAM2)
         }
     }
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
-        return inflater!!.inflate(R.layout.fragment_edit_tab, container, false)
+        return inflater!!.inflate(R.layout.fragment_settings, container, false)
     }
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        // TODO: Use adapter and dynamically fill the list of receipts with parameters and buttons using list_layout.xml
-        // onEditReceiptButtonPressed(mTabID!!)
-        fab_edit_receipt.setOnClickListener {
-            onEditReceiptButtonPressed(mTabID!!)
-        }
-
-        super.onActivityCreated(savedInstanceState)
-    }
-
-    fun onEditReceiptButtonPressed(receiptID: Int) {
+    // TODO: Rename method, update argument and hook method into UI event
+    fun onButtonPressed(uri: Uri) {
         if (mListener != null) {
-            mListener!!.onEditReceipt(receiptID)
+            mListener!!.onFragmentInteraction(uri)
         }
     }
 
-    fun onEditTabContactsButtonPressed(tabID: Int) {
-        if (mListener != null) {
-            mListener!!.onEditTabContacts(tabID)
-        }
-    }
-
+    /*
     override fun onAttach(context: Context?) {
         super.onAttach(context)
         if (context is OnFragmentInteractionListener) {
@@ -68,6 +55,7 @@ class EditTabFragment : Fragment() {
             throw RuntimeException(context!!.toString() + " must implement OnFragmentInteractionListener")
         }
     }
+    */
 
     override fun onDetach() {
         super.onDetach()
@@ -84,28 +72,32 @@ class EditTabFragment : Fragment() {
      * See the Android Training lesson [Communicating with Other Fragments](http://developer.android.com/training/basics/fragments/communicating.html) for more information.
      */
     interface OnFragmentInteractionListener {
-        fun onEditReceipt(receiptID: Int)
-        fun onEditTabContacts(tabID: Int)
+        // TODO: Update argument type and name
+        fun onFragmentInteraction(uri: Uri)
     }
 
     companion object {
         // TODO: Rename parameter arguments, choose names that match
         // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-        private val ARG_TAB_ID = "Tab ID"
+        private val ARG_PARAM1 = "param1"
+        private val ARG_PARAM2 = "param2"
 
         /**
          * Use this factory method to create a new instance of
          * this fragment using the provided parameters.
          *
-         * @param tabID the id of the tab
-         * @return A new instance of fragment EditTabFragment.
+         * @param param1 Parameter 1.
+         * @param param2 Parameter 2.
+         * @return A new instance of fragment SettingsFragment.
          */
-        fun newInstance(tabID: Int): EditTabFragment {
-            val fragment = EditTabFragment()
+        // TODO: Rename and change types and number of parameters
+        fun newInstance(param1: String, param2: String): SettingsFragment {
+            val fragment = SettingsFragment()
             val args = Bundle()
-            args.putInt(ARG_TAB_ID, tabID)
+            args.putString(ARG_PARAM1, param1)
+            args.putString(ARG_PARAM2, param2)
             fragment.arguments = args
             return fragment
         }
     }
-}
+}// Required empty public constructor

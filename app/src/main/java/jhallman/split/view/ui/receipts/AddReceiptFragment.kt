@@ -1,4 +1,4 @@
-package jhallman.split.view.ui.fragment
+package jhallman.split.view.ui.receipts
 
 import android.content.Context
 import android.os.Bundle
@@ -8,16 +8,17 @@ import android.view.View
 import android.view.ViewGroup
 
 import jhallman.split.R
+import kotlinx.android.synthetic.main.fragment_add_receipt.*
 
 /**
  * A simple [Fragment] subclass.
  * Activities that contain this fragment must implement the
- * [AddPersonFragment.OnFragmentInteractionListener] interface
+ * [AddReceiptFragment.OnFragmentInteractionListener] interface
  * to handle interaction events.
- * Use the [AddPersonFragment.newInstance] factory method to
+ * Use the [AddReceiptFragment.newInstance] factory method to
  * create an instance of this fragment.
  */
-class AddPersonFragment : Fragment() {
+class AddReceiptFragment : Fragment() {
 
     // TODO: Rename and change types of parameters
     private var mTabID: Int? = null
@@ -34,22 +35,31 @@ class AddPersonFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
-        return inflater!!.inflate(R.layout.fragment_add_person, container, false)
+        return inflater!!.inflate(R.layout.fragment_add_receipt, container, false)
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
+        fab_add_receipt.setOnClickListener {
+            onAddReceiptButtonPressed()
+        }
+        fab_add_new_contact.setOnClickListener {
+            onAddNewContactButtonPressed()
+        }
+        // TODO: Remember contacts used before and generate list of clickable buttons for quick add
         super.onActivityCreated(savedInstanceState)
     }
 
-    fun onAddPersonToTabButtonPressed() {
+    // Edit tab button pressed
+    fun onAddReceiptButtonPressed() {
         if (mListener != null) {
-            mListener!!.onAddPersonToTab()
+            mListener!!.onAddReceipt()
         }
     }
 
-    fun onCancelAddPersonToTabButtonPressed() {
+    // New purchase button pressed
+    fun onAddNewContactButtonPressed() {
         if (mListener != null) {
-            mListener!!.onCancelAddPersonToTab()
+            mListener!!.onAddPersonToReceipt()
         }
     }
 
@@ -78,8 +88,8 @@ class AddPersonFragment : Fragment() {
      */
     interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
-        fun onAddPersonToTab()
-        fun onCancelAddPersonToTab()
+        fun onAddReceipt()
+        fun onAddPersonToReceipt()
     }
 
     companion object {
@@ -92,10 +102,10 @@ class AddPersonFragment : Fragment() {
          * this fragment using the provided parameters.
          *
          * @param tabID the id of the tab
-         * @return A new instance of fragment AddPersonFragment.
+         * @return A new instance of fragment AddReceiptFragment.
          */
-        fun newInstance(tabID: Int): AddPersonFragment {
-            val fragment = AddPersonFragment()
+        fun newInstance(tabID: Int): AddReceiptFragment {
+            val fragment = AddReceiptFragment()
             val args = Bundle()
             args.putInt(ARG_TAB_ID, tabID)
             fragment.arguments = args

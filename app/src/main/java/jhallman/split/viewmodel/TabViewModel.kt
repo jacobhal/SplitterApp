@@ -16,8 +16,8 @@ class TabViewModel @Inject constructor (val tabRepository: TabRepository): ViewM
 
     private lateinit var mTab: LiveData<Tab>
 
-    fun getAllTabs() {
-        tabRepository.getTabs()
+    fun getTabs(): LiveData<List<Tab>>{
+        return tabRepository.getTabs()
     }
 
     fun testHello(): String {

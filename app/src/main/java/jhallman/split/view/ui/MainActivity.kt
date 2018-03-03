@@ -11,9 +11,13 @@ import android.view.Menu
 import android.view.MenuItem
 import jhallman.split.R
 import jhallman.split.utils.*
-import jhallman.split.view.ui.fragment.AddReceiptFragment
-import jhallman.split.view.ui.fragment.EditReceiptFragment
-import jhallman.split.view.ui.fragment.*
+import jhallman.split.view.ui.contacts.AddContactFragment
+import jhallman.split.view.ui.contacts.EditTabContactsFragment
+import jhallman.split.view.ui.receipts.AddReceiptFragment
+import jhallman.split.view.ui.receipts.EditReceiptFragment
+import jhallman.split.view.ui.home.HomeFragment
+import jhallman.split.view.ui.settings.SettingsFragment
+import jhallman.split.view.ui.tabs.*
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.app_bar_main.*
 
@@ -23,9 +27,9 @@ import kotlinx.android.synthetic.main.app_bar_main.*
  */
 class MainActivity : AppCompatActivity(),
         NavigationView.OnNavigationItemSelectedListener,
-        AddPersonFragment.OnFragmentInteractionListener,
+        AddContactFragment.OnFragmentInteractionListener,
         AddReceiptFragment.OnFragmentInteractionListener,
-        CreatedTabFragment.OnFragmentInteractionListener,
+        TabFragment.OnFragmentInteractionListener,
         EditReceiptFragment.OnFragmentInteractionListener,
         EditTabContactsFragment.OnFragmentInteractionListener,
         EditTabFragment.OnFragmentInteractionListener,
@@ -117,17 +121,17 @@ class MainActivity : AppCompatActivity(),
 
     // HomeFragment
     override fun onNewTabCreation(tabID: Int) {
-        val newFragment = CreatedTabFragment.newInstance(tabID)
+        val newFragment = TabFragment.newInstance(tabID)
         replaceFragment(newFragment, R.id.frameLayout_main)
     }
 
-    // CreatedTabFragment
+    // TabFragment
     override fun onEditTab(tabID: Int) {
         val newFragment = EditTabFragment.newInstance(tabID)
         replaceFragment(newFragment, R.id.frameLayout_main)
     }
 
-    // CreatedTabFragment
+    // TabFragment
     override fun onNewReceipt(tabID: Int) {
         val newFragment = AddReceiptFragment.newInstance(tabID)
         replaceFragment(newFragment, R.id.frameLayout_main)
@@ -168,12 +172,12 @@ class MainActivity : AppCompatActivity(),
         // TODO: Add person to receipt in db (THIS SHOULD BE DONE IN THE FRAGMENT ITSELF SINCE OTHER FRAGMENTS DONT NEED THAT INFORMATION)
     }
 
-    // AddPersonFragment
+    // AddContactFragment
     override fun onAddPersonToTab() {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
-    // AddPersonFragment
+    // AddContactFragment
     override fun onCancelAddPersonToTab() {
         supportFragmentManager.popBackStack()
     }

@@ -1,4 +1,4 @@
-package jhallman.split.view.ui.fragment
+package jhallman.split.view.ui.contacts
 
 import android.content.Context
 import android.os.Bundle
@@ -12,37 +12,47 @@ import jhallman.split.R
 /**
  * A simple [Fragment] subclass.
  * Activities that contain this fragment must implement the
- * [AllTabsFragment.OnFragmentInteractionListener] interface
+ * [AddContactFragment.OnFragmentInteractionListener] interface
  * to handle interaction events.
- * Use the [AllTabsFragment.newInstance] factory method to
+ * Use the [AddContactFragment.newInstance] factory method to
  * create an instance of this fragment.
  */
-class AllTabsFragment : Fragment() {
+class AddContactFragment : Fragment() {
 
     // TODO: Rename and change types of parameters
+    private var mTabID: Int? = null
 
     private var mListener: OnFragmentInteractionListener? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         if (arguments != null) {
+            mTabID = arguments.getInt(ARG_TAB_ID)
         }
     }
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
-        return inflater!!.inflate(R.layout.fragment_all_tabs, container, false)
+        return inflater!!.inflate(R.layout.fragment_add_contact, container, false)
     }
 
-    // TODO: Rename method, update argument and hook method into UI event
-    fun onButtonPressed(tabID: Int) {
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
+    }
+
+    fun onAddPersonToTabButtonPressed() {
         if (mListener != null) {
-            mListener!!.onRunningTabSelected(tabID)
+            mListener!!.onAddPersonToTab()
         }
     }
 
-    // Make sure that callback activity has implemented interface
+    fun onCancelAddPersonToTabButtonPressed() {
+        if (mListener != null) {
+            mListener!!.onCancelAddPersonToTab()
+        }
+    }
+
     override fun onAttach(context: Context?) {
         super.onAttach(context)
         if (context is OnFragmentInteractionListener) {
@@ -68,31 +78,28 @@ class AllTabsFragment : Fragment() {
      */
     interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
-        fun onRunningTabSelected(tabID: Int)
+        fun onAddPersonToTab()
+        fun onCancelAddPersonToTab()
     }
 
     companion object {
         // TODO: Rename parameter arguments, choose names that match
         // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-        private val ARG_PARAM1 = "param1"
-        private val ARG_PARAM2 = "param2"
+        private val ARG_TAB_ID = "Tab ID"
 
         /**
          * Use this factory method to create a new instance of
          * this fragment using the provided parameters.
          *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment AllTabsFragment.
+         * @param tabID the id of the tab
+         * @return A new instance of fragment AddContactFragment.
          */
-        // TODO: Rename and change types and number of parameters
-        fun newInstance(param1: String, param2: String): AllTabsFragment {
-            val fragment = AllTabsFragment()
+        fun newInstance(tabID: Int): AddContactFragment {
+            val fragment = AddContactFragment()
             val args = Bundle()
-            args.putString(ARG_PARAM1, param1)
-            args.putString(ARG_PARAM2, param2)
+            args.putInt(ARG_TAB_ID, tabID)
             fragment.arguments = args
             return fragment
         }
     }
-}// Required empty public constructor
+}
