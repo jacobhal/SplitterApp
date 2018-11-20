@@ -14,13 +14,17 @@ import javax.inject.Inject
 
 class TabViewModel @Inject constructor (val tabRepository: TabRepository): ViewModel() {
 
-    private lateinit var mTab: LiveData<Tab>
+    private val tabLiveData: MutableLiveData<Tab> = MutableLiveData()
 
-    fun getTabs(): LiveData<List<Tab>>{
-        return tabRepository.getTabs()
+    fun getTabById(tabId: Long): LiveData<Tab>{
+        return tabRepository.findTabById(tabId)
     }
 
-    fun testHello(): String {
-        return "Hello"
+    fun insertTab(tab: Tab): Long {
+        return tabRepository.insertTab(tab)
+    }
+
+    fun deleteTab(tab: Tab) {
+        tabRepository.deleteTab(tab)
     }
 }

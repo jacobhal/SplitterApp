@@ -120,8 +120,8 @@ class MainActivity : AppCompatActivity(),
     }
 
     // HomeFragment
-    override fun onNewTabCreation(tabID: Int) {
-        val newFragment = TabFragment.newInstance(tabID)
+    override fun onNewTabCreation(tabId: Long) {
+        val newFragment = TabFragment.newInstance(tabId)
         replaceFragment(newFragment, R.id.frameLayout_main)
     }
 

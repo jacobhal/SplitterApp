@@ -16,7 +16,7 @@ class ContactRepository @Inject constructor(private val contactDao: ContactDao) 
         return contactDao.getAllContacts()
     }
 
-    fun getContact(contactID: Long): LiveData<Contact> {
+    fun findContactById(contactID: Long): LiveData<Contact> {
         return contactDao.findContactById(contactID)
     }
 

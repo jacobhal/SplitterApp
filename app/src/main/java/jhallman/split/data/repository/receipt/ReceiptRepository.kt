@@ -15,7 +15,7 @@ class ReceiptRepository @Inject constructor(private val receiptDao: ReceiptDao) 
         return receiptDao.getAllReceipts()
     }
 
-    fun getReceipt(receiptID: Long): LiveData<Receipt> {
+    fun findReceiptById(receiptID: Long): LiveData<Receipt> {
         return receiptDao.findReceiptById(receiptID)
     }
 

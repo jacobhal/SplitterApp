@@ -14,12 +14,15 @@ import javax.inject.Inject
  * Requests/aggregates data from the Model, and transforms it for the View
  */
 
-class TabCollectionViewModel @Inject constructor (val tabRepository: TabRepository) : ViewModel() {
+class TabListViewModel @Inject constructor (val tabRepository: TabRepository) : ViewModel() {
 
-    private lateinit var mTabs: LiveData<List<Tab>>
-    private lateinit var mTab: LiveData<Tab>
+    private var tabsLiveData: LiveData<List<Tab>>
 
-    fun getTabs(): LiveData<List<Tab>> {
+    init {
+        tabsLiveData = fetchTabs()
+    }
+
+    fun fetchTabs(): LiveData<List<Tab>> {
         return tabRepository.getTabs()
     }
 }

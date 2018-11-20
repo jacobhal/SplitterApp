@@ -15,7 +15,7 @@ class TabRepository @Inject constructor(private val tabDao: TabDao) {
         return tabDao.getAllTabs()
     }
 
-    fun getTab(tabID: Long): LiveData<Tab> {
+    fun findTabById(tabID: Long): LiveData<Tab> {
         return tabDao.findTabById(tabID)
     }
 

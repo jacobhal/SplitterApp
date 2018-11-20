@@ -14,7 +14,7 @@ import javax.inject.Inject
  * Requests/aggregates data from the Model, and transforms it for the View
  */
 
-class ReceiptCollectionViewModel @Inject constructor (val receiptRepository: ReceiptRepository) : ViewModel() {
+class ReceiptListViewModel @Inject constructor (val receiptRepository: ReceiptRepository) : ViewModel() {
 
     fun getReceipts(): LiveData<List<Receipt>> {
         return receiptRepository.getReceipts()

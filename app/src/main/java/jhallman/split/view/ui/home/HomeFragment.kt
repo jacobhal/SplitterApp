@@ -15,6 +15,7 @@ import kotlinx.android.synthetic.main.fragment_home.*
 
 import jhallman.split.R
 import jhallman.split.application.SplitterApplication
+import jhallman.split.data.repository.tab.Tab
 import jhallman.split.viewmodel.TabViewModel
 import javax.inject.Inject
 
@@ -31,7 +32,7 @@ class HomeFragment : Fragment() {
     private var mListener: OnFragmentInteractionListener? = null
 
     @Inject lateinit var mViewModelFactory: ViewModelProvider.Factory
-    var mViewModel: TabViewModel? = null
+    var mtabViewModel: TabViewModel? = null
 
     companion object {
         fun newInstance(): HomeFragment {
@@ -44,24 +45,22 @@ class HomeFragment : Fragment() {
         (activity.application as SplitterApplication).mAppComponent.inject(this)
     }
 
-    override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View? {
-        // Inflate the layout for this fragment
-        return inflater!!.inflate(R.layout.fragment_home, container, false)
-    }
-
     // Set onClickListeners when activity has been created
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
         // Set up and subscribe (observe) to the ViewModel
-        mViewModel = ViewModelProviders.of(this, mViewModelFactory).get(TabViewModel::class.java)
-        println(mViewModel!!.testHello())
-
+        mtabViewModel = ViewModelProviders.of(this, mViewModelFactory).get(TabViewModel::class.java)
 
         fab_new_tab.setOnClickListener {
             onNewTabButtonPressed()
         }
+    }
+
+    override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?,
+                              savedInstanceState: Bundle?): View? {
+        // Inflate the layout for this fragment
+        return inflater!!.inflate(R.layout.fragment_home, container, false)
     }
 
     // New tab button pressed
@@ -97,7 +96,7 @@ class HomeFragment : Fragment() {
      * See the Android Training lesson [Communicating with Other Fragments](http://developer.android.com/training/basics/fragments/communicating.html) for more information.
      */
     interface OnFragmentInteractionListener {
-        fun onNewTabCreation(tabID: Int)
+        fun onNewTabCreation(tabId: Long)
     }
 
     private fun showTabCreationDialog() {
@@ -109,15 +108,15 @@ class HomeFragment : Fragment() {
         val edt = dialogView.findViewById(R.id.edit_name) as EditText
 
         dialogBuilder.setTitle(R.string.dialog_tab_title)
-        dialogBuilder.setPositiveButton(R.string.dialog_tab_create, { dialog, whichButton ->
+        dialogBuilder.setPositiveButton(R.string.dialog_tab_create, { _, _ ->
             // Get the value from EditText field
-            // TODO: Create db record for a new tab and get id to pass along
-            val tabName = "" + edt.text
-            val tabID = 0
-            mListener!!.onNewTabCreation(tabID)
+            val tabTitle = "" + edt.text
+            val tab = Tab(title = tabTitle)
+            val tabId = mtabViewModel!!.insertTab(tab)
+            mListener!!.onNewTabCreation(tabId)
 
         })
-        dialogBuilder.setNegativeButton(R.string.dialog_tab_cancel, { dialog, whichButton ->
+        dialogBuilder.setNegativeButton(R.string.dialog_tab_cancel, { _, _ ->
             // User cancelled
         })
         val b = dialogBuilder.create()

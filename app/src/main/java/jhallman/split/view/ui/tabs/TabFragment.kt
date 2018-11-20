@@ -104,10 +104,10 @@ class TabFragment : Fragment() {
          * @param tabID the id of the tab
          * @return A new instance of fragment TabFragment.
          */
-        fun newInstance(tabID: Int): TabFragment {
+        fun newInstance(tabId: Long): TabFragment {
             val fragment = TabFragment()
             val args = Bundle()
-            args.putInt(ARG_TAB_ID, tabID)
+            args.putLong(ARG_TAB_ID, tabId)
             fragment.arguments = args
             return fragment
         }

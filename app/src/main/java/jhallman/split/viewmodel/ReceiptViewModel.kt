@@ -19,7 +19,7 @@ import javax.inject.Inject
 
 class ReceiptViewModel @Inject constructor (val receiptRepository: ReceiptRepository) : ViewModel() {
 
-    fun getReceipt(id: Long): LiveData<Receipt> {
-        return receiptRepository.getReceipt(id)
+    fun getReceipt(receiptId: Long): LiveData<Receipt> {
+        return receiptRepository.findReceiptById(receiptId)
     }
 }

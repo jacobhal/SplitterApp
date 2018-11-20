@@ -15,7 +15,7 @@ class PurchaseRepository @Inject constructor(private val purchaseDao: PurchaseDa
         return purchaseDao.getAllPurchases()
     }
 
-    fun getPurchase(purchaseID: Long): LiveData<Purchase> {
+    fun findPurchaseById(purchaseID: Long): LiveData<Purchase> {
         return purchaseDao.findPurchaseById(purchaseID)
     }
 
